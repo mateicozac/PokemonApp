@@ -38,7 +38,7 @@ public class PokemonRepositoryTests {
     @Test
     public void PokemonRepository_GetAll_ReturnMoreThenOnePokemon() {
         Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
+                .name("pikachu11")
                 .type("electric").build();
         Pokemon pokemon2 = Pokemon.builder()
                 .name("pikachu")
