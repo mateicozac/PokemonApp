@@ -44,10 +44,10 @@ public class PokemonServiceImpl implements PokemonService {
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         Page<Pokemon> pokemons = pokemonRepository.findAll(pageable);
         List<Pokemon> listOfPokemon = pokemons.getContent();
-        List<PokemonDto> content = listOfPokemon.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
+        List<PokemonDto> pokemonsList = listOfPokemon.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
 
         PokemonResponse pokemonResponse = new PokemonResponse();
-        pokemonResponse.setContent(content);
+        pokemonResponse.setPokemons(pokemonsList);
         pokemonResponse.setPageNo(pokemons.getNumber());
         pokemonResponse.setPageSize(pokemons.getSize());
         pokemonResponse.setTotalElements(pokemons.getTotalElements());

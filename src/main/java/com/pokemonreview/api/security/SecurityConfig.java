@@ -19,7 +19,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .antMatchers("/api/auth/**").permitAll()
                                 .antMatchers("/api/public/**").permitAll()
-                                .antMatchers("/api/pokemon/**").permitAll()
+                                .antMatchers("/api/pokemons/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

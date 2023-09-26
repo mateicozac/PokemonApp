@@ -21,7 +21,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
@@ -71,7 +70,7 @@ public class PokemonControllerTests {
 
     @Test
     public void PokemonController_GetAllPokemon_ReturnResponseDto() throws Exception {
-        PokemonResponse responseDto = PokemonResponse.builder().pageSize(10).last(true).pageNo(1).content(Arrays.asList(pokemonDto)).build();
+        PokemonResponse responseDto = PokemonResponse.builder().pageSize(10).last(true).pageNo(1).pokemons(Arrays.asList(pokemonDto)).build();
         when(pokemonService.getAllPokemon(1,10)).thenReturn(responseDto);
 
         ResultActions response = mockMvc.perform(get("/api/pokemon")
@@ -80,7 +79,7 @@ public class PokemonControllerTests {
                 .param("pageSize", "10"));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content.size()", CoreMatchers.is(responseDto.getContent().size())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content.size()", CoreMatchers.is(responseDto.getPokemons().size())));
     }
 
     @Test
